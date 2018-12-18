@@ -1,11 +1,14 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+const cors = require("cors");
 var prod=require('./models/products');
 var validateReq = require('./models/validations');
 const validator = require('express-joi-validation')({});
 var app = express();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.options('*',cors());
 app.use(function(req, res, next)
 {
 res.header("Access-Control-Allow-Origin", "*");
